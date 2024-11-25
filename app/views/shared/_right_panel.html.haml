@@ -1,0 +1,82 @@
+- if current_user
+  .right-panel
+    .navigation-panel 
+      .right
+        .top
+          .material-symbols-outlined#menu-btn menu
+          #theme-toggler
+            .light-mode.material-symbols-outlined light_mode
+            .dark-mode.material-symbols-outlined dark_mode
+          .profile
+            .profile-info
+              %strong= current_user.firstname
+              %div
+                %small.muted-text= current_user.role_name
+            .profile-photo
+
+    - if @cur_url == '/'
+      .last-updates
+        %h2 Последние обновления
+        .updates 
+          .update
+            .profile-photo
+            .update-message
+              .user 
+                %strong samir
+              .update-date date
+          .update
+            .profile-photo
+            .update-message
+              .user 
+                %strong samir
+              .update-date date
+          .update
+            .profile-photo
+            .update-message
+              .user 
+                %strong samir
+              .update-date date
+          .update
+            .profile-photo
+            .update-message
+              .user 
+                %strong samir
+              .update-date date
+
+      .active-products
+        %h2 Активные товары
+        .products-list
+          .product-item 
+            -# .material-symbols-outlined.product-icon inventory_2
+            .right 
+              .product-info
+                %div
+                  .name 
+                    %strong Часы Casio
+                  .price 
+                    .muted-text 1500rub
+                .status.success{ style: "font-size: 13px !important; font-weight: 700;" } Активно
+          .product-item 
+            -# .material-symbols-outlined.product-icon inventory_2
+            .right 
+              .product-info
+                %div
+                  .name 
+                    %strong Часы Casio
+                  .price 
+                    .muted-text 1500rub
+                .status.success{ style: "font-size: 13px !important; font-weight: 700;" } Активно
+          .product-item 
+            -# .material-symbols-outlined.product-icon inventory_2
+            .right 
+              .product-info
+                %div
+                  .name 
+                    %strong Духи Dior
+                  .price 
+                    .muted-text 3000rub
+                .status.success{ style: "font-size: 13px !important; font-weight: 700;" } Активно
+
+        #add-product
+          .material-symbols-outlined.product-add-icon add
+          %h3 Добавить товар

@@ -1,0 +1,15 @@
+.modal.fade.in#role-modal{:tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5.modal-title= title
+        %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+      .modal-body
+        = form_for @role, :remote => true, html: { id: 'role-form', authenticity_token: true } do |f|
+          .field
+            = f.label "Роль", :for => "role"
+            = f.text_field :role_name, required: true, class: "form-control", id: "role"
+
+      .modal-footer
+        %button.btn.btn-dark.pull-left{"data-bs-dismiss" => "modal", :type => "button"} Закрыть
+        %button.btn.btn-primary{ type: :submit, form: 'role-form' } Сохранить

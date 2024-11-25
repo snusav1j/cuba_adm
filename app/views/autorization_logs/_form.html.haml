@@ -1,0 +1,13 @@
+= form_for @autorization_log do |f|
+  - if @autorization_log.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@autorization_log.errors.count, "error")} prohibited this autorization_log from being saved:"
+      %ul
+        - @autorization_log.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :user_id
+    = f.number_field :user_id
+  .actions
+    = f.submit 'Save'

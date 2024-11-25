@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @autorization_log.user_id
+
+= link_to 'Edit', edit_autorization_log_path(@autorization_log)
+\|
+= link_to 'Back', autorization_logs_path

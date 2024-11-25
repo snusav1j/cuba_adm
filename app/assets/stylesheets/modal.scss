@@ -1,0 +1,20 @@
+.modal-content{
+  box-shadow: var(--box-shadow) !important;
+}
+.modal-header .modal-title{
+  font-size: 16px !important;
+}
+.modal-header,
+.modal-footer{
+  border-top: 1px solid var(--light) !important;
+  border-bottom: 1px solid var(--light) !important;
+}
+.modal-header,
+.modal-footer,
+.modal-body{
+  background: var(--white) !important;
+}
+
+.modal-content{
+  border-radius: 30px !important;
+}

@@ -1,0 +1,21 @@
+%h1 Listing autorization_logs
+
+%table
+  %thead
+    %tr
+      %th User
+      %th
+      %th
+      %th
+
+  %tbody
+    - @autorization_logs.each do |autorization_log|
+      %tr
+        %td= autorization_log.user_id
+        %td= link_to 'Show', autorization_log
+        %td= link_to 'Edit', edit_autorization_log_path(autorization_log)
+        %td= link_to 'Destroy', autorization_log, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Autorization log', new_autorization_log_path

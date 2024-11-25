@@ -1,0 +1,38 @@
+%aside
+  .top
+    .logo 
+      -# .material-symbols-outlined home
+      %a.navbar-brand{:href => "/"}
+        .desktop-logo
+          %span.dark{ style: "font-weight: 800; font-size: 22px !important;" } Cuba
+          %span.primary{ style: "font-weight: 800; font-size: 22px !important;" } Admin
+        .mobile-logo
+          %span.dark{ style: "font-weight: 800; font-size: 22px !important;" }C
+          %span.primary{ style: "font-weight: 800; font-size: 22px !important;" }A
+    
+    .material-symbols-outlined#close-btn close
+  .sidebar
+    %a{:href => "/", class: @cur_url == '/' ? "active" : ""}
+      .material-symbols-outlined home
+      %h3 Главная
+    %a{:href => "#", class: @cur_url == '/tasks' ? "active" : ""}
+      .material-symbols-outlined editor_choice
+      %h3 Задачи
+      %span.tasks-count 12
+    %a{:href => "/profiles", class: @cur_url == '/profiles' ? "active" : ""}
+      .material-symbols-outlined group
+      %h3 Профили
+    %a{:href => "/roles", class: @cur_url == '/roles' ? "active" : ""}
+      .material-symbols-outlined diamond
+      %h3 Роли
+    %a{:href => "#", class: @cur_url == '/settings' ? "active" : ""}
+      .material-symbols-outlined settings
+      %h3 Настройки
+    - if current_user.present?
+      %a{:href => "/logout"}
+        .material-symbols-outlined logout
+        %h3 Выйти
+    - else
+      %a{:href => "/login"}
+        .material-symbols-outlined login
+        %h3 Войти

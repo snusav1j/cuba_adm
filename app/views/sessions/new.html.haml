@@ -1,0 +1,11 @@
+
+.form.login-form
+  %h1.large-h1{ style: "margin-bottom: 20px; width: 100%" }  Вход
+  = form_for @user, url: sessions_path, html: { id: "login-form" } do |f|
+    .field
+      = f.label "Логин"
+      = f.text_field :login, required: true, class: "form-control"
+    .field
+      = f.label "Пароль"
+      = f.text_field :password, required: true, class: "form-control"
+    %button.btn.btn-primary{ type: :submit, form: 'login-form', style: "margin-top: 10px; width: 100%; font-size: 14px;" } Войти

@@ -1,0 +1,34 @@
+.modal.fade.in#user-modal{:tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5.modal-title= title
+        %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+      .modal-body
+        = form_for @user, :remote => false  , html: { id: 'user-form', authenticity_token: true } do |f|
+          - if current_user.support? || current_user.id == @user.id || current_user.director?
+            .field
+              = f.label "Имя", :for => "firstname"
+              = f.text_field :firstname, required: true, class: "form-control", id: "firstname"
+            .field
+              = f.label "Фамилия"
+              = f.text_field :lastname, required: true, class: "form-control"
+          - if current_user.director?
+            .field
+              = f.label "Роль"
+              = f.select :role, options_for_select(roles, @user.role), {}, class: "form-select"
+          - if current_user.support? || current_user.id == @user.id || current_user.director?
+            .field
+              = f.label "Почта"
+              = f.text_field :email, required: true, class: "form-control"
+          - if current_user.director?
+            .field
+              = f.label "Логин"
+              = f.text_field :login, required: true, class: "form-control"
+            .field
+              = f.label "Пароль"
+              = f.text_field :password, required: true, class: "form-control"
+
+      .modal-footer
+        %button.btn.btn-dark.pull-left{"data-bs-dismiss" => "modal", :type => "button"} Закрыть
+        %button.btn.btn-primary{ type: :submit, form: 'user-form' } Сохранить

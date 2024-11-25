@@ -1,0 +1,39 @@
+%p#notice= notice
+
+%table.table.table-hover.table-bordered
+  %tbody
+    %tr
+      %td{ style: "width: 80px" }
+        Имя
+      %td
+        = @user.firstname
+    %tr
+      %td
+        Фамилия
+      %td
+        = @user.lastname
+    %tr
+      %td
+        Роль
+      %td
+        = @user.role
+    %tr
+      %td
+        Почта
+      %td
+        = @user.email
+    %tr
+      %td
+        Логин
+      %td
+        = @user.login
+    %tr
+      %td
+        Пароль
+      %td
+        = @user.password
+   
+= link_to 'Edit', edit_user_path(@user)
+
+-# = link_to 'Back', users_path
+

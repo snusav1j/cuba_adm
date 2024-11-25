@@ -1,0 +1,68 @@
+.profiles-block{
+  width: 500px;
+}
+.show-profile{
+  cursor: pointer;
+  margin-left: 10px;
+  height: 14px;
+}
+.profiles-block .user-fullname{
+  white-space: nowrap;
+}
+.profiles-block .profile-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.users-info-block{
+  max-height: 300px;
+  display: flex;
+  gap: 20px;
+}
+
+.profiles-header{
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.plus-btn-primary{
+  padding: 5px;
+  background: var(--primary);
+  border-radius: var(--btn-border-radius);
+  cursor: pointer;
+  color: var(--white);
+}
+.plus-btn-primary:hover{
+  background: var(--hover-primary);
+}
+.plus-btn-danger{
+  padding: 5px;
+  background: var(--danger);
+  border-radius: var(--btn-border-radius);
+  cursor: pointer;
+  color: var(--white);
+}
+.plus-btn-danger:hover{
+  background: var(--hover-danger);
+}
+.plus-btn-warning{
+  padding: 5px;
+  background: var(--warning);
+  border-radius: var(--btn-border-radius);
+  cursor: pointer;
+  color: var(--white);
+}
+.plus-btn-warning:hover{
+  background: var(--hover-warning);
+}
+.plus-btn-success{
+  padding: 5px;
+  background: var(--success);
+  border-radius: var(--btn-border-radius);
+  cursor: pointer;
+  color: var(--white);
+}
+.plus-btn-success:hover{
+  background: var(--hover-success);
+}
