@@ -1,0 +1,23 @@
+%h1 Listing product_photos
+
+%table
+  %thead
+    %tr
+      %th Product
+      %th Photo name
+      %th
+      %th
+      %th
+
+  %tbody
+    - @product_photos.each do |product_photo|
+      %tr
+        %td= product_photo.product_id
+        %td= product_photo.photo_name
+        %td= link_to 'Show', product_photo
+        %td= link_to 'Edit', edit_product_photo_path(product_photo)
+        %td= link_to 'Destroy', product_photo, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Product photo', new_product_photo_path

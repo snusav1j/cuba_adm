@@ -1,0 +1,25 @@
+%h1 Listing profile_photos
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Photo url
+      %th Photo name
+      %th
+      %th
+      %th
+
+  %tbody
+    - @profile_photos.each do |profile_photo|
+      %tr
+        %td= profile_photo.user_id
+        %td= profile_photo.photo_url
+        %td= profile_photo.photo_name
+        %td= link_to 'Show', profile_photo
+        %td= link_to 'Edit', edit_profile_photo_path(profile_photo)
+        %td= link_to 'Destroy', profile_photo, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Profile photo', new_profile_photo_path

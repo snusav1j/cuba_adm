@@ -1,7 +1,13 @@
 class User < ApplicationRecord
 
+  DELETED = 9999999999999
+
   def director?
     self.role == Role::DIRECTOR
+  end
+
+  def ceo?
+    self.role == Role::CEO
   end
 
   def admin?
@@ -29,7 +35,7 @@ class User < ApplicationRecord
   end
 
   def role_name
-    self.role = Role.find_by(id: self.role).role_name
+    self.role = Role.find_by(id: self.role).present? ? Role.find_by(id: self.role).role_name : nil
   end
 
   def fullname

@@ -1,0 +1,13 @@
+#content-block
+  .products-header.header-block
+    .left
+      %h1 Маркетпелейсы
+      .profiles-info.muted-text
+        %strong= "Всего маркетпелейсов:"
+        %span= MarketPlace.all.length
+    .right
+      - if current_user.director? || current_user.ceo?
+        .material-symbols-outlined.new-marketplace.plus-btn-primary add
+
+  #marketplaces-table= render partial: 'table'
+

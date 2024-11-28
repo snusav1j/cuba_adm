@@ -49,9 +49,9 @@ th{
 body{
   font-size: 14px;
   width: 100vw; height: 100vh;
-  background-color: var(--color-background);
+  background-color: var(--color-background) !important;
   user-select: none;
-  // overflow: hidden;
+  overflow-x: hidden;
   color: var(--dark) !important;
 }
 
@@ -66,7 +66,7 @@ img{
 
 h1{
   font-weight: 600 !important;
-  font-size: 1.8rem !important;
+  font-size: 1.6rem !important;
   margin: 0 !important;
 }
 
@@ -99,11 +99,13 @@ small{
 .sidebar h3{
   font-weight: 550 !important;
 }
+.profile-photo img{
+  border-radius: 50%;
+}
 .profile-photo{
   border-radius: 50%;
   width: 2.8rem;
   height: 2.8rem;
-  background-color: red;
 }
 p{
   color: var(--dark-variant) !important;
@@ -118,6 +120,10 @@ b{
 .primary{
   color: var(--primary) !important;
 }
+.products-list {
+  max-height: 385px;
+  overflow-y: auto;
+}
 .danger{
   color: var(--danger) !important;
 }
@@ -126,6 +132,9 @@ b{
 }
 .ligh{
   color: var(--light) !important;
+}
+.text-warning{
+  color: var(--warning) !important;
 }
 .warning{
   color: var(--warning) !important;
@@ -137,11 +146,27 @@ b{
   display: grid !important;
   width: 100% !important;
   margin: 0 auto;
-  gap: 1.8rem;
-  grid-template-columns: 14rem auto 23rem;
+  // gap: 1.8rem;
+  gap: 15px;
+  grid-template-columns: 15rem auto 28rem;
   margin: 0;
 }
-
+.block-item:not(:last-child){
+  border-bottom: 1px solid var(--light);
+  padding: 10px 0;
+}
+.block-item{
+  position: relative;
+}
+.block-item-date{
+  position: absolute;
+  right: 0;
+  top: 8px;
+}
+.info-panel .block-list{
+  height: calc(100vh - 155px) !important;
+  max-height: unset !important;
+}
 aside{
   height: 100vh;
 }
@@ -234,7 +259,17 @@ main .home-date input#home-date{
   color: var(--dark);
   border: unset;
 }
-
+td img#photo-previev{
+  width: 35px !important;
+  height: 35px !important;
+  border-radius: 50% !important;
+}
+.profile-photo-block{
+  border-radius: var(--border-radius-1) !important;
+}
+.profile-photo-preview #photo-previev{
+  // margin-bottom: 3rem;
+}
 main .insights {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -243,13 +278,17 @@ main .insights {
 html, .wrapper{
   background: var(--color-background) !important;
 }
+.insights .card-block{
+  height: 210px;
+}
 .card-block{
   background: var(--white);
   padding: var(--card-padding);
   border-radius: var(--card-border-radius);
   margin-top: 1rem;
-  height: 210px;
-  box-shadow: none;
+  
+  box-shadow: var(--box-shadow);
+  transition: .3s ease;
 }
 
 .card-block:hover{
@@ -257,7 +296,7 @@ html, .wrapper{
   padding: var(--card-padding);
   border-radius: var(--card-border-radius);
   margin-top: 1rem;
-  box-shadow: var(--box-shadow);
+  box-shadow: none;
   transition: .3s ease;
 }
 .bgc-primary{
@@ -279,14 +318,16 @@ html, .wrapper{
   color: var(--white);
   font-size: 2rem;
 }
-
+.total-sales {
+  font-size: 20px !important;
+}
 .insights .middle{
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.insights h3{
-  margin: 22px 0 15px !important;
+.insights h1{
+  margin: 20px 0 5px !important;
 }
 .insights small{
   margin-top: 1.1rem !important;
@@ -296,13 +337,21 @@ html, .wrapper{
   margin-bottom: 0.8rem !important;
 }
 .last-deals{
-  margin-top: 2rem;
+  margin-top: 1.2rem;
 }
 .table-block table tr{
   transition: .3s ease !important;
 }
-.table-block table tr:hover{
-  background: var(--tr);
+.table-block table tbody tr,
+.block-item,
+.product-item{
+  transition: .3s ease;
+}
+
+.table-block table tbody tr:hover,
+.block-item:hover,
+.product-item:hover{
+  background: var(--tr) !important;
 }
 .table-block table{
   background: var(--white) !important;
@@ -326,19 +375,25 @@ html, .wrapper{
   background: var(--white) !important;
   padding: var(--table-padding) !important;
   border-radius: var(--table-border-radius);
-  box-shadow: none;
+  box-shadow: var(--box-shadow);
   transition: .3s ease;
 }
 .table-block:hover{
-  box-shadow: var(--box-shadow);
-  
+  box-shadow: none;
+}
+.auto-scrolling{
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  border-radius: var(--table-border-radius) !important;
 }
 table thead th,
 table tbody td{
   padding: 0.85rem;
+  
 }
 table tbody td{
   width: 5px !important;
+  min-height: 53px !important;
 }
 table thead tr,
 table tbody tr:not(:last-child){
@@ -364,9 +419,11 @@ table tbody tr:not(:last-child){
 }
 .navigation-panel .top{
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+  // justify-content: end;
   gap: 2rem;
-  margin-right: 2rem;
+  // margin-right: 2rem;
+  
 }
 
 .navigation-panel #menu-btn{
@@ -408,37 +465,37 @@ table tbody tr:not(:last-child){
   text-align: right;
 }
 
-.last-updates{
+.info-block-list{
   margin-top: 1.2rem;
 }
-.last-updates h2{
-  margin-bottom: 0.8rem !important;
+.info-block-list h2{
+  margin-bottom: 0.9rem !important;
 }
 
-.last-updates .updates{
+.info-block-list .block-list{
   background: var(--white);
   padding: var(--card-padding);
   border-radius: var(--table-border-radius);
   height: 210px;
   max-height: 210px;
   overflow-y: auto;
-  box-shadow: none;
   transition: .3s ease;
-}
-.last-updates .updates:hover{
   box-shadow: var(--box-shadow);
 }
-.last-updates .update:not(:last-child){
-  margin-bottom: 1rem;
+.info-block-list .block-list:hover{
+  box-shadow: none;
 }
-.last-updates .update{
+.info-block-list .block-item:not(:last-child){
+  // margin-bottom: 1rem;
+}
+.info-block-list .block-item{
   display: grid;
   grid-template-columns: 2.6rem auto;
   gap: 1rem;
 }
 
 .active-products{
-  margin-top: 2rem;
+  margin-top: 18px;
 }
 .active-products h2{
   margin-bottom: 0.8rem !important;
@@ -451,13 +508,13 @@ table tbody tr:not(:last-child){
   margin-bottom: 0.8rem;
   padding: 1rem var(--card-padding);
   border-radius: var(--table-border-radius);
-  box-shadow: none;
+  box-shadow: var(--box-shadow);
   transition: .3s ease;
 }
 .active-products .product-item:hover{
-  box-shadow: var(--box-shadow);
+  box-shadow: none;
 }
-.status.success{
+.status{
   position: absolute;
   right: 1rem;
 }
@@ -489,7 +546,12 @@ table tbody tr:not(:last-child){
   cursor: pointer;
 }
 
-
+.header-block{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
 // adaptive
 .mobile-logo{
   display: none;
@@ -519,13 +581,26 @@ table tbody tr:not(:last-child){
     overflow-y: auto;
   }
 }
-
+.header-block,
+.right-panel .right .top{
+  background: var(--white);
+  padding: 15px;
+  border-radius: var(--border-radius-1);
+  height: 72px;
+  box-shadow: var(--box-shadow);
+}
 @media screen and (max-width: 768px){
   .wrapper{
     width: 100%;
     grid-template-columns: 1fr !important;
   }
-  
+  #content-block {
+    padding: 15px;
+    width: 100vw;
+  }
+  .header-block{
+    margin-top: 4rem;
+  }
   @keyframes ShowMenu {
     to{
       left: 0;
@@ -586,7 +661,7 @@ table tbody tr:not(:last-child){
   }
   .right-panel .top #theme-toggler{
     position: absolute;
-    left: 60%;
+    left: 55%;
   }
   .right-panel .top .profile .profile-info{
     display: none;
@@ -601,5 +676,18 @@ table tbody tr:not(:last-child){
   .right-panel{
     margin: 15px !important;
   }
+  .top .profile{
+    position: absolute;
+    right: 30px;
+  }
 }
 
+.current-user-row{
+  background: var(--dark-primary);
+}
+.current-user-row:hover{
+  background: var(--dark-primary-hover) !important;
+}
+.td-icon{
+  font-size: 22px !important;
+}

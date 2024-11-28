@@ -1,0 +1,13 @@
+#content-block
+  .products-header.header-block
+    .left
+      %h1 Товары
+      .profiles-info.muted-text
+        %strong= "Всего товаров:"
+        %span= Product.all.length
+    .right
+      - if current_user.director? || current_user.ceo?
+        .material-symbols-outlined.new-product.plus-btn-primary add
+
+  #products-table= render partial: 'table'
+

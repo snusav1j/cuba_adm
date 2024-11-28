@@ -1,6 +1,6 @@
 
 .form.login-form
-  %h1.large-h1{ style: "margin-bottom: 20px; width: 100%" }  Вход
+  %h1.large-h1.text-center{ style: "margin-bottom: 30px !important; width: 100%" }  Вход
   = form_for @user, url: sessions_path, html: { id: "login-form" } do |f|
     .field
       = f.label "Логин"

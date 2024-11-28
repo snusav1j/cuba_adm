@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
   before_action :ensure_current_user
-  
+  require 'fileutils'
+
   def index
     @users = User.all
   end
@@ -19,16 +20,31 @@ class UsersController < ApplicationController
     respond_to :js
   end
 
+  def delete_user
+    @user = User.find_by(id: params[:id])
+    @deleted = @user.delete if @user
+    if @deleted
+      ProfilePhoto.find_by(user_id: @user.id).delete if ProfilePhoto.find_by(user_id: @user.id)
+      FileUtils.remove_dir "#{Rails.root}/public/files/profile_imgs/#{@user.id}", true
+    end
+    respond_to :js
+  end
+
   def create
-    @user = User.new(user_params)
-    @user.save
-    redirect_to "/profiles"
+    @users = User.all
+    @can_create = !User.find_by(login: user_params[:login]).present?
+    if @can_create
+      @user = User.new(user_params)
+      @user.save
+    end
+    respond_to :js
   end
 
   def update
+    @users = User.all
     @updated = @user.update(user_params)
-    redirect_to "/profiles"
-    # respond_to :js
+
+    respond_to :js
   end
 
   def destroy
@@ -46,6 +62,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.expect(user: [ :firstname, :lastname, :role, :email, :login, :password, :role ])
+      params.expect(user: [ :firstname, :lastname, :role, :email, :login, :password, :role, :id ])
     end
 end

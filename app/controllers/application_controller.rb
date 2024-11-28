@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
-  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
+  include TranslateHelper
   allow_browser versions: :modern
   helper_method :current_user
   before_action :set_global_vars
+  before_action :set_cache_headers
 
   def set_global_vars
     @cur_url = request.env['REQUEST_URI']
@@ -15,12 +16,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def current_page
-    
-  end
-
   def current_user
     User.find_by_id(session[:user_id])
   end
 
+  private
+
+  def set_cache_headers
+    response.headers["Cache-Control"] = "no-cache, no-store"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Mon, 01 Jan 1990 00:00:00 GMT"
+  end
 end

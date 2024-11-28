@@ -1,5 +1,7 @@
 :root {
   --primary: #5b9aec;
+  --dark-primary: #005acf21;
+  --dark-primary-hover: #005acf0a;
   --hover-primary: #5b9aeccc;
   --danger: #ff7782;
   --hover-danger: #ff7782cc;
@@ -17,7 +19,7 @@
   --primary-variant: #111e88;
   --dark-variant: #677483;
   --color-background: #f6f6f9;
-  --second-white: #efefef57;
+  --second-white: #efefef28;
   --color-background: #eef2f7b7;
 
   --card-border-radius: 1.2rem;
@@ -26,22 +28,32 @@
   --border-radius-1: 0.4rem;
   --border-radius-2: 0.8rem;
   --border-radius-3: 1.2rem;
-
+  --forms-shadow: 0px 0rem 1rem 0px rgba(132, 139, 200, 0.18);
+  --forms-border: 2px solid #d8d8d8;
   --card-padding: 1.8rem;
   --table-padding: 1rem;
   --padding-1: 1.2rem;
   --box-shadow: 0 0.7rem 1.7rem var(--light);
   --tr: #f6f6f6;
   --muted: rgba(33, 37, 41, 0.75);
+  --toast-error: rgb(192, 25, 25) ;
+  --toast-warning: rgb(219, 146, 9) ;
+  --toast-success: rgb(23, 148, 23) ;
+
+  --form-bg: #e4e4e4;
 }
 .dark-theme-variables {
+  --form-bg: #343a3e;
+  --forms-border: 2px solid #1b1b1b;
+  --forms-shadow: 0px 0rem 1rem 0px rgba(41, 41, 41, 0.18);
   --tr: #242424b3;
+  --primary: #005acf;
   --color-background: #181a1e;
   --white: #202528;
   --light: rgba(0, 0, 0, 0.4);
   --dark: #edeffd;
   --dark-variant: #677483;
   --box-shadow: 0 2rem 3rem var(--light)
-  --second-white: #29292957 !important;
+  --second-white: #67676757 !important;
   --muted: #cecece;
 }

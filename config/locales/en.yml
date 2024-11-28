@@ -28,4 +28,13 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  log_type_3_action_1: "Товар добавлен"
+  log_type_3_action_2: "Товар изменен"
+  log_type_3_action_3: "Товар продан"
+  log_type_3_action_4: "Товар удален"
+
+  log_type_1_action_1: "Зашел в приложение"
+  log_type_1_action_2: "Вышел из приложения"
+
+  product_sold_1: "Да"
+  product_sold_2: "Нет"

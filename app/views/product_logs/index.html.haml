@@ -1,0 +1,23 @@
+%h1 Listing product_logs
+
+%table
+  %thead
+    %tr
+      %th Product
+      %th Action
+      %th
+      %th
+      %th
+
+  %tbody
+    - @product_logs.each do |product_log|
+      %tr
+        %td= product_log.product_id
+        %td= product_log.action
+        %td= link_to 'Show', product_log
+        %td= link_to 'Edit', edit_product_log_path(product_log)
+        %td= link_to 'Destroy', product_log, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Product log', new_product_log_path

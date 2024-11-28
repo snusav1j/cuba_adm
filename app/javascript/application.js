@@ -5,8 +5,10 @@
 //= require jquery_ujs
 //= require profiles
 //= require main
+//= require products
 //= require roles
 //= require toastr
+//= require marketplaces
 
 //= import 'bootstrap'
 //= require bootstrap-sprockets

@@ -1,7 +1,66 @@
 module ApplicationHelper
-
+  
   def roles
-    Role.all.map{|r| [r.role_name, r.id] }
+    current_user.ceo? ? Role.all.map{|r| [r.role_name, r.id]} : Role.where.not(id: Role::CEO).map{|r| [r.role_name, r.id] }
+  end
+  
+  def marketplaces
+    MarketPlace.all.map{|mp| [mp.marketplace_name, mp.id]}
+  end
+  
+  def product_expenses
+    expenses = 0
+    Product.all.each do |p|
+      expenses += p.buy_price
+    end
+    expenses
+  end
+  
+  def product_income
+    income = 0
+    SellProduct.all.each do |p|
+      income += p.sell_price
+    end
+    income
+  end
+
+  def user_photo_name(user_id)
+    ProfilePhoto.find_by(user_id: user_id).photo_name
+  end
+  
+  def current_user_profile_photo
+    # Rails.cache.clear
+    if current_user
+      profile_photo_model = ProfilePhoto.find_by(user_id: current_user.id)
+      if profile_photo_model
+        if profile_photo_model.has_file?
+          profile_photo = "/files/profile_imgs/#{current_user.id}/#{user_photo_name current_user.id}"
+        end
+      end
+    end
+    if !profile_photo.nil?
+      image_tag profile_photo, id: "photo-previev"
+    else
+      image_tag "/files/profile_imgs/no_image/user_img.png", id: "photo-previev"
+    end
+  end
+
+  def user_profile_photo(user_id)
+    # Rails.cache.clear
+    user = User.find_by(id: user_id)
+    if user
+      profile_photo_model = ProfilePhoto.find_by(user_id: user.id)
+      if profile_photo_model
+        if profile_photo_model.has_file?
+          profile_photo = "/files/profile_imgs/#{user.id}/#{user_photo_name user.id}"
+        end
+      end
+    end
+    if !profile_photo.nil?
+      image_tag profile_photo, id: "photo-previev"
+    else
+      image_tag "/files/profile_imgs/no_image/user_img.png", id: "photo-previev"
+    end
   end
 
   def pretty_date(date)

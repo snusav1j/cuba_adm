@@ -1,1 +1,7 @@
-$('#user-modal').modal('hide');
+<% if @can_create %>
+  $('#user-modal').modal('hide');
+  $('#profile-table').html("<%= j render partial: 'table' %>");
+  toastr.success('Пользователь создан')
+<% else %>
+  toastr.error('Пользователь с таким логином уже существует')
+<% end %>

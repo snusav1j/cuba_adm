@@ -8,16 +8,24 @@
     %link{:href => "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined", :rel => "stylesheet"}
     = csrf_meta_tags
     = render partial: 'shared/bootstrap'
-  %body 
-    = render partial: 'shared/nav'
-    .wrapper
-      #sidebar= render partial: 'shared/sidebar'
-      .content-wrapper
+  %body
+    - if current_user
+      = render partial: 'shared/nav'
+      .wrapper
+        #sidebar= render partial: 'shared/sidebar'
+        .content-wrapper
+          = yield
+        = render partial: 'shared/right_panel'
+    - else 
+      .login-form-block
         = yield
-      = render partial: 'shared/right_panel'
 
 #test-modal-outer
 #user-modal-outer
+#sell-product-modal-outer
+#product-modal-outer
 #role-modal-outer
+#marketplace-modal-outer
+
 
 = render partial: 'shared/confirm_modal'

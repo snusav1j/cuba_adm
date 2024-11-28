@@ -1,0 +1,52 @@
+.modal.fade.in#product-modal{:tabindex => "-1"}
+  .modal-dialog.modal-xl
+    .modal-content
+      .modal-header
+        %h5.modal-title= title
+        %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+      .modal-body
+        = form_for @product, :remote => true  , html: { id: 'product-form', authenticity_token: true } do |f|
+          .row
+            .col-md-6
+              .field
+                = f.label "Название"
+                = f.text_field :product_name, class: "form-control", required: true
+            .col-md-6
+              .field
+                = f.label "Маректплейс"
+                = f.select :marketplace, options_for_select(marketplaces, @product.marketplace), {}, class: "form-select", required: true
+          .row
+            .col-md-6
+              .field
+                = f.label "Цена закупки"
+                = f.number_field :buy_price, class: "form-control", required: true
+            .col-md-6
+              .field
+                = f.label "В наличии"
+                = f.number_field :available, class: "form-control", required: true
+              
+          -# - if editing
+          -#   .row
+          -#     .col-md-6
+          -#       .field
+          -#         = f.label "Продано"
+          -#         = f.select :sold, options_for_select([["Да", 1], ["Нет", 2]], @product.sold), {}, class: "form-select"
+          -#     .col-md-6
+          -#       .field
+          -#         = f.label "Цена продажи"
+          -#         = f.number_field :sell_price, class: "form-control", required: true
+          .row{ style: "margin-top: 20px;" }
+            .col-md-12
+              .field
+                = f.label "Описание"
+                = f.text_area :description, class: "form-control"
+          .row{ style: "margin-top: 20px;" }
+            .col-md-6
+            .col-md-6
+              .field
+                = f.label "Желаемая цена продажи"
+                = f.number_field :desired_price, class: "form-control", required: true
+      .modal-footer
+        %button.btn.btn-dark.pull-left{"data-bs-dismiss" => "modal", :type => "button"} Закрыть
+        %button.btn.btn-primary{ type: :submit, form: 'product-form' } Сохранить
+

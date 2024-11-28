@@ -1,0 +1,4 @@
+<% if current_user.ceo? || current_user.director? %>
+  $('#product-modal-outer').html("<%= j render partial: 'product_modal', locals: { editing: true, product: @product, title: 'Редактировать товар' } %>");
+  $('#product-modal').modal('show');
+<% end %>

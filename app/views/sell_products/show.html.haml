@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Product:
+  = @sell_product.product_id
+%p
+  %b Sell price:
+  = @sell_product.sell_price
+
+= link_to 'Edit', edit_sell_product_path(@sell_product)
+\|
+= link_to 'Back', sell_products_path

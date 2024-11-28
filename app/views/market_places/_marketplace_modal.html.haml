@@ -1,0 +1,17 @@
+.modal.fade.in#marketplace-modal{:tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5.modal-title= title
+        %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+      .modal-body
+        = form_for @market_place, :remote => true  , html: { id: 'marketplace-form', authenticity_token: true } do |f|
+          .field
+            = f.label "Маректплейс"
+            = f.text_field :marketplace_name, class: "form-control", required: true
+
+      .modal-footer
+        %button.btn.btn-dark.pull-left{"data-bs-dismiss" => "modal", :type => "button"} Закрыть
+        %button.btn.btn-primary{ type: :submit, form: 'marketplace-form' } Сохранить
+
+

@@ -1,0 +1,4 @@
+$('#product-modal').modal('hide');
+$('#products-table').html("<%= j render partial: 'table' %>");
+$('#active_products').html("<%= j render partial: '/products/active_products', locals: { products: @active_products}  %>");
+toastr.success('Товар добавлен')

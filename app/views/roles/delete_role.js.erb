@@ -1,0 +1,8 @@
+<% if @can_delete %>
+  <% if @deleted %>
+    $('.role-row[data-role-id= "<%= @role.id %>"]').remove()
+    toastr.error('Роль удалена')
+  <% end %>
+<% else %>
+  toastr.warning('Роль используется. Удалите или измените профиль с этой ролью')
+<% end %>

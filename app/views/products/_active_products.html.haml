@@ -1,0 +1,17 @@
+.active-products
+  %h2 Товары
+  .products-list
+    - products.each do |p|
+      .product-item{ data: { product_id: p.id } }
+        -# .material-symbols-outlined.product-icon inventory_2
+        .right 
+          .product-info
+            %div
+              .name 
+                %strong= p.product_name
+              .price 
+                .muted-text= "#{p.desired_price} ₽"
+            .status.text-warning{ style: "font-size: 13px !important; font-weight: 700;" } Активно
+  #add-product
+    .material-symbols-outlined.product-add-icon add
+    %h3 Добавить товар

@@ -24,7 +24,6 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  margin-bottom: 1.5rem;
 }
 .plus-btn-primary{
   padding: 5px;
@@ -32,6 +31,7 @@
   border-radius: var(--btn-border-radius);
   cursor: pointer;
   color: var(--white);
+  transition: .3s ease;
 }
 .plus-btn-primary:hover{
   background: var(--hover-primary);
@@ -42,6 +42,7 @@
   border-radius: var(--btn-border-radius);
   cursor: pointer;
   color: var(--white);
+  transition: .3s ease;
 }
 .plus-btn-danger:hover{
   background: var(--hover-danger);
@@ -52,6 +53,7 @@
   border-radius: var(--btn-border-radius);
   cursor: pointer;
   color: var(--white);
+  transition: .3s ease;
 }
 .plus-btn-warning:hover{
   background: var(--hover-warning);
@@ -62,7 +64,40 @@
   border-radius: var(--btn-border-radius);
   cursor: pointer;
   color: var(--white);
+  transition: .3s ease;
 }
 .plus-btn-success:hover{
   background: var(--hover-success);
+}
+.autorization-block h2{
+  margin-bottom: 1rem !important;
+}
+.autorization-block{
+  margin-top: 1.5rem;
+}
+.autorization-block .table-block{
+  height: calc(100vh - 165px) !important;
+  
+}
+.autorization-block div{
+  box-shadow: var(--box-shadow);
+  transition: .3s ease;
+}
+.autorization-block div:hover{
+  box-shadow: none;
+}
+
+.profile-photo-preview img{
+  border-radius: var(--table-border-radius);
+}
+.profile-photo-block div,
+.profile-photo-block input{
+  width: 100% !important;
+}
+.profile-photo-preview{
+  cursor: pointer;
+}
+.profile-photo-block {
+  min-width: 250px;
+  max-width: 30%;
 }

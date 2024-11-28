@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Log:
+  = @super_log.log_id
+%p
+  %b User:
+  = @super_log.user_id
+%p
+  %b Action:
+  = @super_log.action
+%p
+  %b Log type:
+  = @super_log.log_type
+
+= link_to 'Edit', edit_super_log_path(@super_log)
+\|
+= link_to 'Back', super_logs_path

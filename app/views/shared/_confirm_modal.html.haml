@@ -2,10 +2,10 @@
   .modal-dialog
     .modal-content
       .modal-header
-        %h5.modal-title= 123
+        %h5.modal-title Окно подтверждения
         %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
       .modal-body
-        123
+
       .modal-footer
         %button.btn.btn-dark.pull-left{"data-bs-dismiss" => "modal", :type => "button"} Закрыть
-        %button.btn.btn-primary{ type: :submit, form: 'user-form' } Сохранить
+        %button.btn.btn-primary.confirm-btn{ type: :submit } Сохранить

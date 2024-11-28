@@ -1,1 +1,13 @@
-= current_user
+#content-block
+  .profiles-header.header-block
+    .left
+      %h1 Профили
+      .profiles-info.muted-text
+        %strong= "Всего профилей:"
+        %span= User.all.length
+    .right
+      - if current_user.director? || current_user.ceo?
+        .material-symbols-outlined.new-user.plus-btn-primary add
+
+  #profile-table= render partial: '/users/table'
+

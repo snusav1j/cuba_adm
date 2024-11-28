@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Marketplace name:
+  = @market_place.marketplace_name
+
+= link_to 'Edit', edit_market_place_path(@market_place)
+\|
+= link_to 'Back', market_places_path

@@ -1,4 +1,4 @@
-<% if current_user.director? || current_user.admin? || current_user.support? || current_user.id == @user.id %>
+<% if current_user.director? || current_user.ceo? || current_user.id == @user.id %>
   $('#user-modal-outer').html("<%= j render partial: 'edit_modal', locals: { user: @user, title: 'Редактировать пользователя' } %>");
   $('#user-modal').modal('show');
 <% end %>

@@ -1,0 +1,4 @@
+<% if @deleted %>
+  $('.profile-row[data-user-id= "<%= @user.id %>"]').remove()
+  toastr.error('Пользователь удален')
+<% end %>

@@ -4,6 +4,7 @@ const close_btn = document.getElementById('close-btn')
 const theme_toggler = document.getElementById('theme-toggler')
 const light_mod_btn = document.querySelector('.light-mode')
 const dark_mod_btn = document.querySelector('.dark-mode')
+
 const getCookie = (name) => {
   return document.cookie.split('; ').reduce((r, v) => {
     const parts = v.split('=')
@@ -58,6 +59,7 @@ theme_toggler.addEventListener('click', () => {
 $(document).ready(function() {
 	$('[data-confirm]').click(function(ev) {
 		var href = $(this).attr('href');
+    console.log(1)
 		$('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
 		$('#dataConfirmModal').modal('show')
 		var confirmBtn = $('#dataConfirmModal').find('.confirm-btn')
@@ -66,3 +68,15 @@ $(document).ready(function() {
 		return false;
 	});
 });
+
+// $('.profile-photo-uploader').change(function(event) {
+//   var output = document.querySelector('#photo-previev')
+//   if (event.target.files.length >= 1){
+//     $("#photo-previev").html('')
+//   }
+//   output.src = URL.createObjectURL(event.target.files[0]);
+//   output.onload = function() {
+//     URL.revokeObjectURL(output.src)
+//   }
+// })
+

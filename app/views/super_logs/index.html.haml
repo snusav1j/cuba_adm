@@ -1,0 +1,27 @@
+%h1 Listing super_logs
+
+%table
+  %thead
+    %tr
+      %th Log
+      %th User
+      %th Action
+      %th Log type
+      %th
+      %th
+      %th
+
+  %tbody
+    - @super_logs.each do |super_log|
+      %tr
+        %td= super_log.log_id
+        %td= super_log.user_id
+        %td= super_log.action
+        %td= super_log.log_type
+        %td= link_to 'Show', super_log
+        %td= link_to 'Edit', edit_super_log_path(super_log)
+        %td= link_to 'Destroy', super_log, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Super log', new_super_log_path

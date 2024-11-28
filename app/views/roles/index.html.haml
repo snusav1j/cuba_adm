@@ -1,26 +1,14 @@
-.profiles-header
-  .left
-    %h1 Роли
-    .profiles-info.muted-text
-      %strong= "Всего ролей:"
-      %span= Role.all.length
-  .right
-    - if current_user.director?
-      .material-symbols-outlined.new-role.plus-btn-primary add
+#content-block
+  .profiles-header.header-block
+    .left
+      %h1 Роли
+      .profiles-info.muted-text
+        %strong= "Всего ролей:"
+        %span= Role.all.length
+    .right
+      - if current_user.director? || current_user.ceo?
+        .material-symbols-outlined.new-role.plus-btn-primary add
 
-.block-body
-  .table-block
-    %table
-      %thead
-        %tr
-          %th.text-center{ style: "max-width: 50px !important;" } #
-          %th Роль
-          %th.text-center{ style: "max-width: 50px !important;" }
-          -#   %button.btn.btn-primary{ type: :submit, form: 'user-form' } Создать роль
-      %tbody
-        - @roles.each do |role|
-          %tr.role-row{ data: { role_id: role.id } }
-            %td.text-center{ style: "width: 5% !important;" }= role.id
-            %td= role.role_name
-            %td{ style: "width: 5% !important;" }
-              .material-symbols-outlined.danger.pointer{ data: { confirm_action: "delete-role", confirm: "Вы уверены, что хотите продолжить?"} } delete
+  .block-body
+    #roles-table= render partial: 'table'
+    

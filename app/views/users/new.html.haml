@@ -1,3 +1,6 @@
 = render 'form'
-
+- User.all.each do |u|
+  = u.id
+  = u.login
+  = u.password
 -# = link_to 'Back', users_path

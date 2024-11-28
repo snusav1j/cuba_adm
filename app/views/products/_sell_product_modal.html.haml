@@ -1,0 +1,21 @@
+.modal.fade.in#sell-product-modal{:tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5.modal-title= title
+        %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+      .modal-body
+        = form_for @sell_product, :remote => false, html: { id: 'sell-product-form', authenticity_token: true } do |f|
+          = f.number_field :id, class: "form-control", style: "display: none !important;", required: true
+          .row 
+            .col-md-6
+              .field
+                = f.label "Количество"
+                = f.number_field :available, class: "form-control", required: true, value: ''
+            .col-md-6
+              .field
+                = f.label "Цена продажи"
+                = f.number_field :sell_price, class: "form-control", required: true
+      .modal-footer
+        %button.btn.btn-dark.pull-left{"data-bs-dismiss" => "modal", :type => "button"} Закрыть
+        %button.btn.btn-primary{ id: 'sell-product-btn' } Продать

@@ -1,0 +1,11 @@
+.table-block
+  %table
+    %thead
+      %tr
+        %th.text-center{ style: "width: 5%" } #
+        %th Маректплейс
+    %tbody
+      - @market_places.each do |mp|
+        %tr.marketplace-tow
+          %td.text-center= mp.id
+          %td= mp.marketplace_name

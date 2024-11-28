@@ -1,74 +1,77 @@
+- sold_products = SellProduct.all
 %main
-  %h1{ style: "margin-bottom: 25px !important;" } Главная
-
+  %h1.header-block{ style: "height: 72px;margin-bottom: 5px !important; display: flex; align-items: center;" } Главная
   .insights-block
-    %h2 Информация
+    -# %h2 Информация
     .insights
       .tasks-card.card-block
         .material-symbols-outlined.card-icon.bgc-danger account_balance
         .middle 
           .left
-            %h3 Расходы
-            %h1.total-sales 1000rub
+            %h1 Расходы
+            .total-sales= "#{product_expenses} ₽"
           .progress-info
-            .progress-info-percents 100%
+            .progress-info-percents
         %small.muted-text
-          За последние 24 часа
+          За все время
 
       .sales-card.card-block
         .material-symbols-outlined.card-icon.bgc-primary payments
         .middle 
           .left
-            %h3 Продажи
-            %h1.total-sales 1000rub
+            %h1 Продажи
+            .total-sales= "#{product_income} ₽"
           .progress-info
-            .progress-info-percents 100%
+            .progress-info-percents 
         %small.muted-text
-          За последние 24 часа
+          За все время
 
       .income-card.card-block
         .material-symbols-outlined.card-icon.bgc-success currency_ruble
         .middle 
           .left
-            %h3 Доход
-            %h1.total-sales 1000rub
+            %h1 Доход
+            .total-sales= "#{product_income - product_expenses} ₽"
           .progress-info
-            .progress-info-percents 100%
+            %h1.progress-info-percents
+              - if product_income != 0 && product_expenses != 0
+                - if product_income > product_expenses
+                  .success{ style: "font-size: 20px !important;" }= "+ #{((product_income.to_f / product_expenses.to_f) * 100).round(2) } %"
+                - else
+                  .danger{ style: "font-size: 20px !important;" }= "- #{((product_expenses.to_f / product_income.to_f) * 100).round(2) } %"
         %small.muted-text
-          За последние 24 часа
+          За все время
 
   .last-deals 
-    %h2 Последние продажи
+    %h2
+      = "Продажи"
+      %small (последние 50)
     .table-block
       %table
         %thead
           %tr
             %th.text-center{ width: '5%' } #
-            %th.text-center Товар
-            %th.text-center Описание
-            %th.text-center Стоимость
-            %th.text-center Статус
+            %th{ width: '35%' } Товар
+            %th{ width: '50%' } Описание
+            %th.text-center{ width: '5%' } Продал
+            %th.text-center{ width: '10%' } Стоимость
+            %th.text-center{ width: '10%' } Статус
         %tbody
-          %tr
-            %td.text-center 1
-            %td.text-center test
-            %td.text-center test
-            %td.text-center test
-            %td.text-center test
-          %tr
-            %td.text-center 2
-            %td.text-center test
-            %td.text-center test
-            %td.text-center test
-            %td.text-center test
-          %tr
-            %td.text-center 3
-            %td.text-center test
-            %td.text-center test
-            %td.text-center test
-            %td.text-center test
+          - i = 1
+          - sold_products.each do |sd|
+            - product = Product.find_by(id: sd.product_id)
+            %tr
+              %td.text-center= i
+              %td= product.product_name
+              %td= product.description
+              %td.text-center
+                = link_to user_profile_path(id: sd.user_id), style: "display: ruby;" do
+                  = user_profile_photo sd.user_id
+              %td.text-center= "#{sd.sell_price} ₽"
+              %td.text-center
+                %span.success Продано
+            - i += 1
 
-
-    .show-all-deals
-      Показать все
+    -# .show-all-deals
+    -#   Показать все
 

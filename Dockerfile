@@ -27,7 +27,8 @@ ENV RAILS_ENV="production" \
 
 # Throw-away build stage to reduce size of final image
 FROM base AS build
-
+RUN SECRET_KEY_BASE="Hello, Assets!" RAILS_ENV=production bundle exec rake assets:precompile
+RUN SECRET_KEY_BASE="I'm bored with you!" RAILS_ENV=staging bundle exec rake assets:precompile
 # Install packages needed to build gems
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git pkg-config && \

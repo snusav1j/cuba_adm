@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Product:
+  = @product_log.product_id
+%p
+  %b Action:
+  = @product_log.action
+
+= link_to 'Edit', edit_product_log_path(@product_log)
+\|
+= link_to 'Back', product_logs_path

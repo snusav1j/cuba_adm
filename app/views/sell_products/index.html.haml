@@ -1,0 +1,23 @@
+%h1 Listing sell_products
+
+%table
+  %thead
+    %tr
+      %th Product
+      %th Sell price
+      %th
+      %th
+      %th
+
+  %tbody
+    - @sell_products.each do |sell_product|
+      %tr
+        %td= sell_product.product_id
+        %td= sell_product.sell_price
+        %td= link_to 'Show', sell_product
+        %td= link_to 'Edit', edit_sell_product_path(sell_product)
+        %td= link_to 'Destroy', sell_product, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Sell product', new_sell_product_path

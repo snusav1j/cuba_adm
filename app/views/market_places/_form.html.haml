@@ -1,0 +1,13 @@
+= form_for @market_place do |f|
+  - if @market_place.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@market_place.errors.count, "error")} prohibited this market_place from being saved:"
+      %ul
+        - @market_place.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :marketplace_name
+    = f.text_field :marketplace_name
+  .actions
+    = f.submit 'Save'

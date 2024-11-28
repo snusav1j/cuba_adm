@@ -1,4 +1,8 @@
 - if current_user
+  - autorization_logs = SuperLog.get_autorization_logs
+  - product_logs = SuperLog.get_product_logs
+  - updates_info = SuperLog.where.not(log_type: SuperLog::AUTORIZATIONS_LOG).all.reverse
+  - products = Product.get_active_products
   .right-panel
     .navigation-panel 
       .right
@@ -9,74 +13,91 @@
             .dark-mode.material-symbols-outlined dark_mode
           .profile
             .profile-info
-              %strong= current_user.firstname
+              %strong= current_user.fullname
               %div
-                %small.muted-text= current_user.role_name
+                %small.muted-text
+                  = current_user.login
+                  = "##{current_user.id},"
+                  %strong
+                    %small.muted-text{ style: "font-weight: 700 !important;" }= current_user.role_name
             .profile-photo
+              = link_to user_profile_path(id: current_user.id) do
+                = current_user_profile_photo
 
+    - if @cur_url == '/products'
+      .info-block-list.info-panel
+        %h2 
+          = "История изменений"
+          %small= "(последние 30)"
+        .block-list
+          - if product_logs.present?
+            - product_logs.each do |pl|
+              - user = User.find_by(id: pl.user_id)
+              .block-item
+                .profile-photo
+                  = link_to user_profile_path(id: pl.user_id) do
+                    = user_profile_photo pl.user_id
+                .block-item-message
+                  .user 
+                    %strong
+                      - if user.present?
+                        = user.fullname if user
+                      - else
+                        %strike Пользователь
+                  = t("log_type_#{pl.log_type}_action_#{pl.action}")
+                  .block-item-date
+                    %small= small_datetime pl.created_at
+          - else
+            %h1.text-center Пусто
+
+    - if @cur_url == '/user_profiles'
+      .info-block-list.info-panel
+        %h2 
+          = "Авторизации" 
+          %small= "(последние 30)"
+        .block-list
+          - if autorization_logs.present?
+            - autorization_logs.each do |al|
+              - user = User.find_by(id: al.user_id)
+              .block-item
+                .profile-photo
+                  = link_to user_profile_path(id: al.user_id) do
+                    = user_profile_photo al.user_id
+                .block-item-message
+                  .user 
+                    %strong
+                      - if user.present?
+                        = user.fullname if user
+                      - else
+                        %strike Пользователь
+                  = t("log_type_#{al.log_type}_action_#{al.action}")
+                  .block-item-date
+                    %small= small_datetime al.created_at
+          - else
+            %h1.text-center Пусто
+                
     - if @cur_url == '/'
-      .last-updates
+      #active_products= render partial: '/products/active_products', locals: { products: products }
+
+      .info-block-list
         %h2 Последние обновления
-        .updates 
-          .update
-            .profile-photo
-            .update-message
-              .user 
-                %strong samir
-              .update-date date
-          .update
-            .profile-photo
-            .update-message
-              .user 
-                %strong samir
-              .update-date date
-          .update
-            .profile-photo
-            .update-message
-              .user 
-                %strong samir
-              .update-date date
-          .update
-            .profile-photo
-            .update-message
-              .user 
-                %strong samir
-              .update-date date
-
-      .active-products
-        %h2 Активные товары
-        .products-list
-          .product-item 
-            -# .material-symbols-outlined.product-icon inventory_2
-            .right 
-              .product-info
-                %div
-                  .name 
-                    %strong Часы Casio
-                  .price 
-                    .muted-text 1500rub
-                .status.success{ style: "font-size: 13px !important; font-weight: 700;" } Активно
-          .product-item 
-            -# .material-symbols-outlined.product-icon inventory_2
-            .right 
-              .product-info
-                %div
-                  .name 
-                    %strong Часы Casio
-                  .price 
-                    .muted-text 1500rub
-                .status.success{ style: "font-size: 13px !important; font-weight: 700;" } Активно
-          .product-item 
-            -# .material-symbols-outlined.product-icon inventory_2
-            .right 
-              .product-info
-                %div
-                  .name 
-                    %strong Духи Dior
-                  .price 
-                    .muted-text 3000rub
-                .status.success{ style: "font-size: 13px !important; font-weight: 700;" } Активно
-
-        #add-product
-          .material-symbols-outlined.product-add-icon add
-          %h3 Добавить товар
+        .block-list{ style: "min-height: 400px;" }
+          - if updates_info.present?
+            - updates_info.each do |u|
+              - user = User.find_by(id: u.user_id)
+              .block-item
+                .profile-photo
+                  = link_to user_profile_path(id: u.user_id) do
+                    = user_profile_photo u.user_id
+                .block-item-message
+                  .user 
+                    %strong
+                      - if user.present?
+                        = user.fullname if user
+                      - else
+                        %strike Пользователь
+                  = t("log_type_#{u.log_type}_action_#{u.action}")
+                  .block-item-date
+                    %small= small_datetime u.created_at
+          - else
+            %h1.text-center Пусто

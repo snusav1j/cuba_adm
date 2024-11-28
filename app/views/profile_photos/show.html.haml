@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @profile_photo.user_id
+%p
+  %b Photo url:
+  = @profile_photo.photo_url
+%p
+  %b Photo name:
+  = @profile_photo.photo_name
+
+= link_to 'Edit', edit_profile_photo_path(@profile_photo)
+\|
+= link_to 'Back', profile_photos_path

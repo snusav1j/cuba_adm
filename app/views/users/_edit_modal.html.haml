@@ -1,3 +1,6 @@
+- can_edit = current_user.ceo? || (((current_user.director? && @user.role != current_user.role && !@user.ceo?) || (current_user.id == @user.id && current_user.director?)) || current_user.id == @user.id)
+- can_view_role = current_user.ceo? || (current_user.director? && !@user.ceo?)
+- can_view_credential = current_user.ceo? || current_user.id == @user.id || current_user.director?
 .modal.fade.in#user-modal{:tabindex => "-1"}
   .modal-dialog
     .modal-content
@@ -5,29 +8,30 @@
         %h5.modal-title= title
         %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
       .modal-body
-        = form_for @user, :remote => false  , html: { id: 'user-form', authenticity_token: true } do |f|
-          - if current_user.support? || current_user.id == @user.id || current_user.director?
+        = form_for @user, :remote => true  , html: { id: 'user-form', authenticity_token: true } do |f|
+          - if can_view_credential
+            = f.text_field :id, style: "display: none;"
             .field
               = f.label "Имя", :for => "firstname"
-              = f.text_field :firstname, required: true, class: "form-control", id: "firstname"
+              = f.text_field :firstname, required: true, class: "form-control", id: "firstname", disabled: !can_edit
             .field
               = f.label "Фамилия"
-              = f.text_field :lastname, required: true, class: "form-control"
-          - if current_user.director?
+              = f.text_field :lastname, required: true, class: "form-control", disabled: !can_edit
+          - if can_view_role
             .field
               = f.label "Роль"
-              = f.select :role, options_for_select(roles, @user.role), {}, class: "form-select"
-          - if current_user.support? || current_user.id == @user.id || current_user.director?
+              = f.select :role, options_for_select(roles, @user.role), {}, class: "form-select", disabled: !can_edit
+          - if can_view_credential
             .field
               = f.label "Почта"
-              = f.text_field :email, required: true, class: "form-control"
-          - if current_user.director?
+              = f.text_field :email, required: true, class: "form-control", disabled: !can_edit
+          - if can_edit
             .field
               = f.label "Логин"
-              = f.text_field :login, required: true, class: "form-control"
+              = f.text_field :login, required: true, class: "form-control", disabled: !can_edit
             .field
               = f.label "Пароль"
-              = f.text_field :password, required: true, class: "form-control"
+              = f.text_field :password, required: true, class: "form-control", disabled: !can_edit
 
       .modal-footer
         %button.btn.btn-dark.pull-left{"data-bs-dismiss" => "modal", :type => "button"} Закрыть

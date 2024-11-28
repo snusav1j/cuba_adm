@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Product name:
+  = @product.product_name
+%p
+  %b Description:
+  = @product.description
+%p
+  %b Author:
+  = @product.author_id
+%p
+  %b Available:
+  = @product.available
+%p
+  %b Marketplace:
+  = @product.marketplace
+%p
+  %b Buy price:
+  = @product.buy_price
+%p
+  %b Sold:
+  = @product.sold
+%p
+  %b Sell price:
+  = @product.sell_price
+
+= link_to 'Edit', edit_product_path(@product)
+\|
+= link_to 'Back', products_path

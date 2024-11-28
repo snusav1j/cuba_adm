@@ -1,0 +1,15 @@
+#content-block
+  .profile-header.header-block
+    .left
+      %h1 Профиль
+      .profiles-info.muted-text
+        %span= "#{@user.fullname},"
+        %strong= "#{@user.role_name}"
+        #user_id{ style: "display: none !important;" }= @user.id
+
+  .profile-information
+    .profile-photo-block.card-block
+      .profile-photo-preview
+        = user_profile_photo @user.id
+      - if current_user.ceo? || current_user.id == @user.id
+        %input#formFileLg.form-control.form-control-lg{style: "margin-top: 1rem;",class: "profile-photo-uploader", :accept => "image/png, image/gif, image/jpeg", :name => "myImage", :type => "file"}

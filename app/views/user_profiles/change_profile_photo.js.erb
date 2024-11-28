@@ -1,0 +1,13 @@
+<% if @uploaded %>
+  toastr.success('Фото профиля сохранено')
+  <% if @user.id == current_user.id %>
+    $('.navigation-panel #photo-previev').replaceWith('<%= user_profile_photo @user.id %>')
+    $('.profile-information .profile-photo-preview #photo-previev').replaceWith('<%= user_profile_photo @user.id %>')
+  <% else %>
+    $('.profile-information .profile-photo-preview #photo-previev').replaceWith('<%= user_profile_photo @user.id %>')
+  <% end %>
+<% else %>
+  toastr.error('Произошла ошибка')
+<% end %>
+
+console.log('<%= user_profile_photo @user.id %>')

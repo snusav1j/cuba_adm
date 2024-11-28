@@ -8,6 +8,10 @@ class RolesController < ApplicationController
   def new
     @role = Role.new
   end
+  
+  def show
+
+  end
 
   def edit_modal
     role_id = params[:role_id]
@@ -15,7 +19,17 @@ class RolesController < ApplicationController
     respond_to :js
   end
 
+  def delete_role
+    @role = Role.find_by(id: params[:id])
+    @can_delete = !User.all.find_by(role: params[:id]).present?
+    if @can_delete
+      @deleted = @role.delete
+    end
+    respond_to :js
+  end
+
   def create
+    @roles = Role.all
     @role = Role.new(role_params)
     @role.save
   end

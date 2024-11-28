@@ -1,0 +1,11 @@
+<% if @can_sold %>
+  <% if @enough_count %>
+    $('#sell-product-modal').modal('hide');
+    $('#products-table').html("<%= j render partial: 'table' %>");
+    toastr.success('Товар продан')
+  <% else %>
+    toastr.warning('Товара не хватает')
+  <% end %>
+<% else %>
+    toastr.error('Товар закончился')
+<% end %>

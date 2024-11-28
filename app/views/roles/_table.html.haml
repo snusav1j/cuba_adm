@@ -1,0 +1,18 @@
+.table-block
+  %table
+    %thead
+      %tr
+        %th.text-center{ style: "max-width: 50px !important;" } #
+        %th Роль
+        - if current_user.director? || current_user.ceo?          
+          %th.text-center{ style: "max-width: 50px !important;" }
+    %tbody
+      - @roles.each do |role|
+        %tr.role-row{ data: { role_id: role.id } }
+          %td.text-center{ style: "width: 2% !important;" }= role.id
+          %td= role.role_name
+          - if current_user.director? || current_user.ceo?
+            - if role.id != Role::CEO && role.id != Role::DIRECTOR
+              %td.text-cemter{ style: "width: 2% !important;" }
+                = link_to delete_role_role_path(id: role.id), remote: true do
+                  .material-symbols-outlined.td-icon.danger delete

@@ -1,0 +1,34 @@
+.table-block
+  %table
+    %thead
+      %tr
+        %th{ style: "width: 5%;" }
+        %th Имя
+        %th Фамилия
+        %th Роль
+        %th Почта
+        - if current_user.director? || current_user.ceo?
+          %th Логин
+          %th Пароль
+        - if current_user.director? || current_user.ceo?
+          %th.text-center
+    %tbody
+      - @users.each do |user|
+        - profile_row_class = (user.id == current_user.id || current_user.director? || current_user.ceo?) ? "profile-row" : ""
+        - profile_row_class += user.id == current_user.id ? " current-user-row" : ""
+        %tr{ class: profile_row_class, data: { user_id: user.id } }
+          %td
+            = link_to user_profile_path(id: user.id) do
+              = user_profile_photo user.id
+          %td= user.firstname
+          %td= user.lastname
+          %td= user.role_name
+          %td= user.email
+          - if current_user.director? || current_user.ceo?
+            %td= user.login
+            %td= "*****"
+          %td{ style: "width: 5% !important;" }
+          - if current_user.ceo?
+            %td.text-center{ style: "width: 5% !important;" }
+              = link_to delete_user_user_path(id: user.id), remote: true do 
+                .material-symbols-outlined.danger delete

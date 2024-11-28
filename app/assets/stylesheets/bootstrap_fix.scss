@@ -23,18 +23,59 @@ label{
   background: var(--light) !important;
   border-radius: 10px !important;
 }
-
 ::-webkit-scrollbar-thumb {
   border-radius: 10px !important;
   background: var(--primary) !important;
-} 
+}
+.form-select:disabled,
+.form-control:disabled{
+  background: var(--second-white) !important;
+}
+.login-form-block{
+  padding: 100px;
+  overflow: hidden;
+}
+.toast{
+  border: unset !important;
+}
 .login-form{
   width: 500px !important;
   margin: 20px auto;
   padding: 20px;
-  border: 1px solid #ddd;
+  box-shadow: var(--box-shadow);
   border-radius: 5px;
-  background: #f6f6f6;
+  border-radius: var(--border-radius-1);
+  background: var(--white);
+}
+input, select{
+  height: 40px !important;
+}
+input, select, textarea {
+  background: var(--form-bg) !important;
+  color: var(--dark) !important;
+  border: var(--forms-border) !important;
+  box-shadow: var(--forms-shadow) !important;
+}
+.field{
+  margin-bottom: 10px;
+}
+option{
+  color: var(--dark);
+}
+#toast-container .toast-error{
+  background: var(--toast-error);
+  background-position: 15px center;
+}
+#toast-container .toast-warning{
+  background: var(--toast-warning);
+  background-position: 15px center;
+}
+#toast-container .toast-success{
+  background: var(--toast-success);
+  background-position: 15px center;
+}
+#toast-container > .toast{
+  background-repeat: no-repeat;
 }
 .large-h1{
   font-size: 20px !important;
