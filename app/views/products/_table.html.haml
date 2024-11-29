@@ -1,4 +1,9 @@
+- sold_products = @products.get_sold_products
+- not_sold_products = @products.get_active_products
+
 .table-block
+  %h1
+    %strong Не проданные товары
   %table
     %thead
       %tr
@@ -13,7 +18,7 @@
         %th.text-center Последняя цена продажи
         %th.text-center 
     %tbody
-      - @products.each do |product|
+      - not_sold_products.each do |product|
         - count_class = product.available > 0 ? "" : "danger"
         %tr.product-row{ data: { product_id: product.id } }
           %td.text-center
@@ -32,3 +37,36 @@
             - if current_user.ceo? || current_user.director?
               - if !product.sold?
                 .material-symbols-outlined#sell-product.success.pointer{ title: "Продать" } universal_currency_alt
+
+- if sold_products.present?
+  .table-block{ style: "margin-top: 20px;" }
+    %h1
+      %strong Проданные товары
+    %table
+      %thead
+        %tr
+          %th.text-center Автор
+          %th.text-center Название
+          -# %th Описание
+          %th.text-center В наличии
+          %th.text-center Маректплейс
+          %th.text-center Цена закупки
+          %th.text-center Продано
+          %th.text-center Желаемая цена продажи
+          %th.text-center Последняя цена продажи
+      %tbody
+        - sold_products.each do |product|
+          - count_class = product.available > 0 ? "" : "danger"
+          %tr.product-row{ data: { product_id: product.id } }
+            %td.text-center
+              = link_to user_profile_path(id: product.author_id), style: "display: ruby;" do
+                = user_profile_photo product.author_id
+            %td.text-center= product.product_name
+            -# %td= product.description
+            %td.text-center{ class: count_class }= "#{product.available} шт."
+            - marketplace_name = MarketPlace.find_by(id: product.marketplace).marketplace_name
+            %td.text-center= marketplace_name
+            %td.text-center= "#{product.buy_price} ₽"
+            %td.text-center= t("product_sold_#{product.sold}")
+            %td.text-center= "#{product.desired_price} ₽"
+            %td.text-center= product.sell_price.present? ? "#{product.sell_price} ₽" : "-"

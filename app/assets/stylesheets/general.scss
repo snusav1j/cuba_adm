@@ -347,10 +347,15 @@ html, .wrapper{
 .product-item{
   transition: .3s ease;
 }
-
+.sales-card,
+.expenses-card,
+.income-card{
+  cursor: pointer;
+}
 .table-block table tbody tr:hover,
 .block-item:hover,
-.product-item:hover{
+.product-item:hover,
+.card-block:hover{
   background: var(--tr) !important;
 }
 .table-block table{

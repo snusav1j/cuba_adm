@@ -31,7 +31,7 @@ RUN SECRET_KEY_BASE="Hello, Assets!" RAILS_ENV=production bundle exec rake asset
 RUN SECRET_KEY_BASE="I'm bored with you!" RAILS_ENV=staging bundle exec rake assets:precompile
 # Install packages needed to build gems
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git pkg-config && \
+    apt-get install --no-install-recommends -y build-essential git libpq-dev pkg-config && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Install application gems

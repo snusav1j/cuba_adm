@@ -218,6 +218,8 @@ GEM
     parser (3.3.6.0)
       ast (~> 2.4.1)
       racc
+    pg (1.5.9)
+    pg (1.5.9-x64-mingw-ucrt)
     popper_js (2.11.8)
     propshaft (1.1.0)
       actionpack (>= 7.0.0)
@@ -348,8 +350,6 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
-    sqlite3 (2.3.0-x64-mingw-ucrt)
-    sqlite3 (2.3.0-x86_64-linux-gnu)
     sshkit (1.23.2)
       base64
       net-scp (>= 1.1.2)
@@ -412,6 +412,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails (~> 4.6)
   kamal
+  pg (~> 1.1)
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.0)
@@ -422,7 +423,6 @@ DEPENDENCIES
   solid_cache
   solid_queue
   sprockets-rails (~> 3.5, >= 3.5.2)
-  sqlite3 (>= 2.1)
   stimulus-rails
   thruster
   toastr-rails

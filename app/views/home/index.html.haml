@@ -4,27 +4,29 @@
   .insights-block
     -# %h2 Информация
     .insights
-      .tasks-card.card-block
-        .material-symbols-outlined.card-icon.bgc-danger account_balance
-        .middle 
-          .left
-            %h1 Расходы
-            .total-sales= "#{product_expenses} ₽"
-          .progress-info
-            .progress-info-percents
-        %small.muted-text
-          За все время
+      = link_to products_path do
+        .expenses-card.card-block
+          .material-symbols-outlined.card-icon.bgc-danger account_balance
+          .middle 
+            .left
+              %h1 Расходы
+              .total-sales= "#{product_expenses} ₽"
+            .progress-info
+              .progress-info-percents
+          %small.muted-text
+            За все время
 
-      .sales-card.card-block
-        .material-symbols-outlined.card-icon.bgc-primary payments
-        .middle 
-          .left
-            %h1 Продажи
-            .total-sales= "#{product_income} ₽"
-          .progress-info
-            .progress-info-percents 
-        %small.muted-text
-          За все время
+      = link_to products_path do
+        .sales-card.card-block
+          .material-symbols-outlined.card-icon.bgc-primary payments
+          .middle 
+            .left
+              %h1 Продажи
+              .total-sales= "#{product_income} ₽"
+            .progress-info
+              .progress-info-percents 
+          %small.muted-text
+            За все время
 
       .income-card.card-block
         .material-symbols-outlined.card-icon.bgc-success currency_ruble
