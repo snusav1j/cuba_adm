@@ -4,8 +4,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(login: user_params[:login])
-    if @user && @user.password == user_params[:password]
+    @user = User.find_by(login: user_params[:login].strip)
+    if @user && @user.password.strip == user_params[:password]
       session[:user_id] = @user.id
       SuperLog.create_user_login_log(@user.id)
       # AutorizationLog.create_log(@user)
