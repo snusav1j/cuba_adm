@@ -54,8 +54,8 @@
           %tr
             %th.text-center{ width: '5%' } #
             %th{ width: '35%' } Товар
-            %th{ width: '50%' } Описание
-            %th.text-center{ width: '5%' } Продал
+            %th.hide-on-mobile{ width: '50%' } Описание
+            %th.text-center.hide-on-mobile{ width: '5%' } Продал
             %th.text-center{ width: '10%' } Стоимость
             %th.text-center{ width: '10%' } Статус
         %tbody
@@ -65,8 +65,8 @@
             %tr
               %td.text-center= i
               %td= product.product_name
-              %td= product.description
-              %td.text-center
+              %td.hide-on-mobile= product.description
+              %td.text-center.hide-on-mobile
                 = link_to user_profile_path(id: sd.user_id), style: "display: ruby;" do
                   = user_profile_photo sd.user_id
               %td.text-center= "#{sd.sell_price} ₽"
