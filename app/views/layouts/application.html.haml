@@ -6,6 +6,9 @@
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application', type: "module"
     %link{:href => "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined", :rel => "stylesheet"}
+    %link{:href => "images/dashboard.png", :rel => "icon"}
+    %link{:href => "manifest.json", :rel => "manifest"}
+    
     = csrf_meta_tags
     = render partial: 'shared/bootstrap'
   %body
