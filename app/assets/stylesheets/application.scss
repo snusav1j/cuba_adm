@@ -31,3 +31,18 @@
   font-size: 14px !important;
   font-family: "Roboto", sans-serif;
  }
+@media screen and (max-width: 767px){
+  .login-form-block {
+    padding: unset !important;
+    margin: 0 15px !important;
+  }
+  .form.login-form{
+    width: 100% !important
+    
+  }
+}
+@media screen and (max-width: 767px){
+  aside .sidebar a:last-child{
+    bottom: 4rem !important;
+  }
+}
