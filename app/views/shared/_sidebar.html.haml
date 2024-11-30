@@ -21,19 +21,19 @@
     %a{:href => market_places_path, class: @cur_url == '/market_places' ? "active" : ""}
       .material-symbols-outlined store
       %h3 Маректплейсы
-    %a{:href => "#", class: @cur_url == '/tasks' ? "active" : ""}
-      .material-symbols-outlined editor_choice
-      %h3 Задачи
-      %span.tasks-count 12
+    -# %a{:href => "#", class: @cur_url == '/tasks' ? "active" : ""}
+    -#  .material-symbols-outlined editor_choice
+    -#  %h3 Задачи
+    -#  %span.tasks-count 12
     %a{:href => user_profiles_path, class: @cur_url == '/profiles' ? "active" : ""}
       .material-symbols-outlined group
       %h3 Профили
     %a{:href => roles_path, class: @cur_url == '/roles' ? "active" : ""}
       .material-symbols-outlined diamond
       %h3 Роли
-    %a{:href => "#", class: @cur_url == '/settings' ? "active" : ""}
-      .material-symbols-outlined settings
-      %h3 Настройки
+    -# %a{:href => "#", class: @cur_url == '/settings' ? "active" : ""}
+    -#   .material-symbols-outlined settings
+    -#   %h3 Настройки
     - if current_user.present?
       %a{:href => "/logout"}
         .material-symbols-outlined logout
