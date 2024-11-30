@@ -4,12 +4,12 @@
       %tr
         %th{ style: "width: 5%;" }
         %th Имя
-        %th Фамилия
+        %th.hide-on-mobile Фамилия
         %th Роль
-        %th Почта
+        %th.hide-on-mobile-2 Почта
         - if current_user.director? || current_user.ceo?
-          %th Логин
-          %th Пароль
+          %th.hide-on-mobile Логин
+          %th.hide-on-mobile Пароль
         - if current_user.director? || current_user.ceo?
           %th.text-center
     %tbody
@@ -21,12 +21,12 @@
             = link_to user_profile_path(id: user.id) do
               = user_profile_photo user.id
           %td= user.firstname
-          %td= user.lastname
+          %td.hide-on-mobile= user.lastname
           %td= user.role_name
-          %td= user.email
+          %td.hide-on-mobile-2= user.email
           - if current_user.director? || current_user.ceo?
-            %td= user.login
-            %td= "*****"
+            %td.hide-on-mobile= user.login
+            %td.hide-on-mobile= "*****"
           %td{ style: "width: 5% !important;" }
           - if current_user.ceo?
             %td.text-center{ style: "width: 5% !important;" }
