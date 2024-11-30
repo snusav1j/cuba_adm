@@ -40,4 +40,9 @@
     width: 100% !important
     
   }
-} 
+ } 
+ @media screen and (max-width: 767px) {
+     aside .sidebar a:last-child {
+         bottom: 1rem !important;
+     }
+ }
