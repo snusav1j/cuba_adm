@@ -696,3 +696,32 @@ table tbody tr:not(:last-child){
 .td-icon{
   font-size: 22px !important;
 }
+
+@media screen and (max-width: 768px){
+  .info-panel div,
+  .info-panel .user strong{
+    font-size: 12px !important;
+  }
+  .info-panel h1{
+    font-size: 14px !important;
+  }
+  table td,
+  table th,
+  .info-panel{
+    font-size: 12px !important;
+  }
+  .hide-on-mobile{
+    display: none;
+  }
+  .profile-photo-block.card-block {
+    width: 100% !important;
+    max-width: unset;
+  }
+}
+
+@media screen and (max-width: 500px){
+  .hide-on-mobile-2{
+    display: none;
+  }
+  
+}
