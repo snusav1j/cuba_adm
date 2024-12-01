@@ -1,5 +1,3 @@
-- User.create(role: 1, login: '1', password: '1')
-
 .form.login-form
   %h1.large-h1.text-center{ style: "margin-bottom: 30px !important; width: 100%" }  Вход
   = form_for @user, url: sessions_path, html: { id: "login-form" } do |f|
